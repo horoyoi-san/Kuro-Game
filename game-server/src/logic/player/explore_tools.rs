@@ -64,11 +64,27 @@ impl ExploreTools {
 
 impl Default for ExploreTools {
     fn default() -> Self {
+        let mut unlocked_skills: HashSet<i32> = explore_tools_data::iter()
+            .filter(|e| e.authorization.is_empty())
+            .map(|e| e.phantom_skill_id)
+            .collect();
+
+
+        unlocked_skills.insert(1004);
+        unlocked_skills.insert(1003);
+        unlocked_skills.insert(1005);
+        unlocked_skills.insert(1006);
+        unlocked_skills.insert(1007);
+        unlocked_skills.insert(1009);
+        unlocked_skills.insert(1010);
+        unlocked_skills.insert(1011);
+        unlocked_skills.insert(1012);
+        unlocked_skills.insert(1013);
+        unlocked_skills.insert(3001);
+        unlocked_skills.insert(3002);
+
         Self {
-            unlocked_explore_skills: explore_tools_data::iter()
-                .filter(|e| e.authorization.is_empty())
-                .map(|e| e.phantom_skill_id)
-                .collect(),
+            unlocked_explore_skills: unlocked_skills,
             active_explore_skill: 1001,
             roulette: Self::default_roulette(),
         }

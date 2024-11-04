@@ -12,6 +12,10 @@ impl PlayerFunc {
         self.func_map.insert(id, 2);
     }
 
+    pub fn unlock_icon_only(&mut self, id: i32) {
+        self.func_map.insert(id, 1); // ปลดล็อกแสดงเฉพาะไอคอน
+    }
+    
     pub fn load_from_save(data: PlayerFuncData) -> Self {
         PlayerFunc {
             func_map: data.func_map,
@@ -40,11 +44,15 @@ impl PlayerFunc {
 
 impl Default for PlayerFunc {
     fn default() -> Self {
-        Self {
-            func_map: function_condition_data::iter()
-                .filter(|fc| fc.open_condition_id == 0 && fc.is_on)
-                .map(|fc| (fc.function_id, 2))
-                .collect(),
-        }
+        let mut func_map = function_condition_data::iter()
+            .filter(|fc| fc.open_condition_id == 0 && fc.is_on)
+            .map(|fc| (fc.function_id, 2))
+            .collect::<HashMap<i32, i32>>();
+
+        // ตั้งค่าฟังก์ชันที่ปลดล็อกเฉพาะไอคอนที่คุณต้องการ
+        // เช่น สมมติว่าคุณต้องการปลดล็อกไอคอนของฟังก์ชันที่มี ID 10009
+        func_map.insert(10009, 1); // ปลดล็อกแสดงเฉพาะไอคอน
+
+        Self { func_map }
     }
 }

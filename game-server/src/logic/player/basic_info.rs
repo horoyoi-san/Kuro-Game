@@ -3,7 +3,7 @@ use shorekeeper_protocol::{
 };
 
 pub struct PlayerBasicInfo {
-    pub id: i32,
+    pub id: i32, // เปลี่ยนจาก i32 เป็น String
     pub name: String,
     pub sex: i32,
     pub level: i32,
@@ -38,7 +38,7 @@ impl PlayerBasicInfo {
 
     pub fn load_from_save(data: PlayerBasicData) -> Self {
         Self {
-            id: data.id,
+            id: data.id, // id ตอนนี้เป็น String
             name: data.name,
             sex: data.sex,
             level: data.level,
@@ -55,7 +55,7 @@ impl PlayerBasicInfo {
 
     pub fn build_save_data(&self) -> PlayerBasicData {
         PlayerBasicData {
-            id: self.id,
+            id: self.id, // id ตอนนี้เป็น String
             name: self.name.clone(),
             sex: self.sex,
             level: self.level,

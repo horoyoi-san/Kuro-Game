@@ -97,7 +97,7 @@ impl Player {
             .filter(|role_info| role_info.role_type == 1)
             .map(|role_info| role_info.id)
             .collect();
-        let formation = vec![1603, 1504, 1505];
+        let formation = vec![1603, 1504];
 
         required_role_ids.iter().for_each(|&role_id| {
             if !self.role_list.keys().any(|&k| k == role_id) {
@@ -129,7 +129,8 @@ impl Player {
     // Should be handled by quest progression,
     // but as of right now, just unlock what we need
     fn ensure_basic_unlock_func(&mut self) {
-        self.func.unlock(10026); // explore tools
+        self.func.unlock(10026);           // ปลดล็อก explore tools แบบเต็ม
+        self.func.unlock_icon_only(10009);  // ปลดล็อกให้แสดงเฉพาะไอคอนสำหรับ 10009
     }
 
     fn ensure_current_formation(&mut self) {
@@ -383,16 +384,16 @@ impl Player {
 
         PlayerSaveData {
             basic_data: Some(PlayerBasicData {
-                id,
+                id: 90085205,
                 name,
                 sex,
-                level: 1,
+                level: 90,
                 head_photo: 1603,
                 head_frame: 80060009,
                 cur_map_id: 8,
                 role_show_list: vec![role_id],
-                origin_world_level: 19854, // ค่าเริ่มต้น
-                cur_world_level: 90,     // ค่าเริ่มต้น
+                origin_world_level: 5, // ค่าเริ่มต้น
+                cur_world_level: 11,     // ค่าเริ่มต้น
                 sign: String::new(),    // ค่าเริ่มต้น
                 ..Default::default()
             }),

@@ -8,7 +8,7 @@ const UE = require("ue"),
     UiLayer_1 = require("../../Ui/UiLayer");
 
 var _a = require('../Module/WaterMask/WaterMaskController').WaterMaskView;
-_a.LOo = 0.15;
+_a.LOo = 0.5;
 _a.yOo = 700;
 _a.IOo = 700;
 _a.vOo = function () {
@@ -24,7 +24,7 @@ _a.vOo = function () {
         _ = e.widget.height / 2,
         s = Math.ceil(e.widget.width / _a.yOo),
         o = Math.ceil(e.widget.height / _a.IOo),
-        v = "NCSO @ discord.gg/reversedrooms";
+        v = "Horoyoi-san";
     for (let a = 0; a < s; a++)
         for (let e = 0; e < o; e++) {
             var E = UE.KuroActorManager.SpawnActor(Info_1.Info.World, UE.UITextActor.StaticClass(), MathUtils_1
