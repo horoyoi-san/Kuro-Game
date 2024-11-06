@@ -1,53 +1,36 @@
-# Wuthering waves BETA CN
-# 鸣潮 BETA CN
+การคำนวณค่า SHA-1 ของหลาย ๆ ไฟล์พร้อมกันและต้องการได้ค่า SHA-1 รวม ของไฟล์ทั้งหมดในโฟลเดอร์ภายในครั้งเดียวทำได้โดยการรวมเนื้อหาของไฟล์ทั้งหมดเข้าด้วยกันเป็นไฟล์ชั่วคราว แล้วคำนวณค่า SHA-1 จากไฟล์รวมนี้ หรือคำนวณค่า SHA-1 รวม จากไฟล์ทั้งหมดโดยใช้ PowerShell สร้างการ hash ในครั้งเดียว
 
-# Wuthering waves 1.1 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 1.1.0 | installer.exe | https://pcdownload-huoshan.aki-game.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/1.5.3.0/SW7AB9XnK9C6eXcoqInsPuSRB4bWJPuu/installer.exe |
-| BETA 1.1.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 1.1.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 1.1.0 | resource.json | https://pcdownload-wangsu.aki-game.com/pcstarter/prod/game/G152/1.1.0/ESxLtQf8c65nGgjW2iCKkkUxrf1ocMb6/resource.json |
+นี่คือวิธีการทำให้ได้ค่า SHA-1 เดียวที่คำนวณจากหลายไฟล์ในโฟลเดอร์โดยใช้ PowerShell:
 
-# Wuthering waves 1.2 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 1.2.0 | installer.exe | https://pcdownload-huoshan.aki-game.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/1.5.3.0/SW7AB9XnK9C6eXcoqInsPuSRB4bWJPuu/installer.exe |
-| BETA 1.2.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 1.2.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 1.2.0 | resource.json | https://pcdownload-wangsu.aki-game.com/pcstarter/prod/game/G152/1.2.0/7hzsDZbvz4PkA59CiCxwfuUuaDN2aW57/resource.json |
+# วิธีใช้ PowerShell ให้ได้ค่า SHA-1 รวมของไฟล์ทั้งหมดในโฟลเดอร์
 
-# Wuthering waves 1.3 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 1.3.0 | installer.exe | https://pcdownload-huoshan.aki-game.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/1.6.1.0/lrXV5DtqdqnCMFAqMctsXWmZyjLeZxHF/installer.exe |
-| BETA 1.3.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 1.3.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 1.3.0 | resource.json | https://pcdownload-wangsu.aki-game.com/pcstarter/prod/game/G152/1.3.0/JNITFNSeJqvnKYvrplg3gVR71FTq6x01/resource.json |
+1. เปิด PowerShell ด้วยสิทธิ์ Administrator
+2. ใช้คำสั่งต่อไปนี้:
+```
+# ตั้งค่าโฟลเดอร์ที่ต้องการ
+$folderPath = "C:\Game All\Beta\Kuro Game Beta\Wuthering Waves(Beta)\Wuthering Waves Game\Client\Saved\Resources\1.4.0\Resource"
 
-# Wuthering waves 1.4 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 1.4.0 | installer.exe | https://pcdownload-huoshan.aki-game.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/1.6.4.0/DzShblKI5z3ylF1eRFo6yTgnvnZiJVLa/installer.exe |
-| BETA 1.4.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 1.4.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 1.4.0 | resource.json | https://pcdownload-huoshan.aki-game.com/pcstarter/prod/game/G152/1.4.0/iQPhVvIx0vVjUoykmdLNMSHN0sfNWeij/resource.json |
+# สร้างออบเจกต์ SHA1
+$sha1 = [System.Security.Cryptography.SHA1CryptoServiceProvider]::Create()
 
-# Wuthering waves 2.0 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 2.0.0 | installer.exe | XXX |
-| BETA 2.0.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 2.0.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 2.0.0 | resource.json | XXX |
+# รวมเนื้อหาไฟล์ทั้งหมดเข้าด้วยกัน
+$combinedHash = [System.Text.StringBuilder]::new()
+Get-ChildItem -Path $folderPath -File | ForEach-Object {
+    $fileStream = [System.IO.File]::OpenRead($_.FullName)
+    $hashBytes = $sha1.ComputeHash($fileStream)
+    $fileStream.Close()
+    $combinedHash.Append([BitConverter]::ToString($hashBytes) -replace "-", "")
+}
 
-# Wuthering waves 2.1 BETA 
-| Version | File name | Download link|
-| :--- | :--- | :--- |
-| BETA 2.1.0 | installer.exe | XXX |
-| BETA 2.1.0 | Launcher.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/starter/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/G152/index.json |
-| BETA 2.1.0 | index.json | https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json |
-| BETA 2.1.0 | resource.json | XXX |
+# คำนวณค่า SHA-1 ของเนื้อหาทั้งหมดรวมกัน
+$finalHash = $sha1.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($combinedHash.ToString()))
+$finalHashString = [BitConverter]::ToString($finalHash) -replace "-", ""
 
+Write-Output "SHA-1 รวมของไฟล์ทั้งหมดคือ: $finalHashString"
+```
 
-
+# อธิบายการทำงานของโค้ด
+- สร้างออบเจกต์ $sha1 เพื่อใช้คำนวณค่า SHA-1
+- วนลูปผ่านไฟล์ทั้งหมด ในโฟลเดอร์ที่ระบุไว้ใน $folderPath
+- อ่านและคำนวณค่า SHA-1 ของแต่ละไฟล์ จากนั้นรวมค่า Hash ของแต่ละไฟล์เข้าด้วยกันเป็นข้อความเดียว
+- คำนวณค่า SHA-1 จากข้อความรวม เพื่อสร้างค่า Hash เดียวที่ครอบคลุมทุกไฟล์ในโฟลเดอร์
