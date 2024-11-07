@@ -95,56 +95,48 @@ Write-Output "ค่า Index SHA-1 ของโฟลเดอร์คือ: 
  - คำนวณค่า SHA-1 ของแต่ละไฟล์ และรวมค่า SHA-1 ของแต่ละไฟล์เข้าด้วยกันใน $combinedHash
  - คำนวณค่า SHA-1 ของ $combinedHash ที่สร้างขึ้น ซึ่งจะได้ค่า Index SHA-1 ของไฟล์ทั้งหมดในโฟลเดอร์
 ![image](https://github.com/user-attachments/assets/dcee038b-cb5a-4263-b542-1ef01ff8c68e)
-----------------------------------------------------------------------------------------------------------------
-การหาหมายเลข ChangeList หรือ Changelog ID ที่เกี่ยวข้องกับการอัปเดตในเกมหรือแอปพลิเคชันนั้น มักจะขึ้นอยู่กับเครื่องมือและกระบวนการที่ใช้ในการพัฒนาและจัดการเวอร์ชันของโปรเจ็กต์ วิธีการหาหมายเลขนี้จะขึ้นอยู่กับว่าคุณใช้ ระบบควบคุมเวอร์ชัน (Version Control) เช่น Git หรือ SVN หรือใช้ระบบ CI/CD (Continuous Integration/Continuous Deployment) ในการจัดการการอัปเดต
-# ขั้นตอนการหาหมายเลข ChangeList
-1. การใช้ระบบควบคุมเวอร์ชัน (เช่น Git)
-
- - หากคุณเป็นส่วนหนึ่งของทีมพัฒนาและใช้ระบบ Git, การหาหมายเลข ChangeList สามารถทำได้โดยการ ตรวจสอบการเปลี่ยนแปลงใน commit หรือ การ merge ใน Git ซึ่งแต่ละการเปลี่ยนแปลงจะมีหมายเลข commit hash ที่เป็นเอกลักษณ์
- - ในกรณีนี้หมายเลข ChangeList อาจจะถูกกำหนดเป็น commit ID หรือ revision ID
-ตัวอย่างการหา ChangeList ใน Git:
-**เปิด Git log เพื่อดูประวัติการ commit**
+----------------------------------------------------------------------------------------------------------------------------------
+# การใช้สคริปต์ Python ที่ใช้ในการดึงค่า ChangeList จากไฟล์ index.json หรือ resource.json:
 ```
-git log
+import requests
+
+# URL สำหรับไฟล์ index.json หรือ resource.json
+index_json_url = "https://prod-cn-alicdn-gamestarter.kurogame.com/pcstarter/prod/game/G152/10008_Pa0Q0EMFxukjEqX33pF9Uyvdc8MaGPSz/index.json"
+resource_json_url = "https://pcdownload-huoshan.aki-game.com/pcstarter/prod/game/G152/1.4.0/iQPhVvIx0vVjUoykmdLNMSHN0sfNWeij/resource.json"
+
+# ฟังก์ชันในการโหลดไฟล์ JSON และดึงข้อมูล ChangeList
+def get_changelist_from_json(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        # ตรวจสอบว่าในไฟล์ JSON มีคีย์ 'ChangeList' หรือไม่
+        changelist = data.get('ChangeList')
+        if changelist:
+            return changelist
+        else:
+            print("ไม่พบค่า 'ChangeList' ในไฟล์ JSON")
+    else:
+        print("ไม่สามารถโหลดไฟล์ JSON ได้")
+
+# ทดสอบด้วย index.json หรือ resource.json
+changelist = get_changelist_from_json(index_json_url)
+if changelist:
+    print(f"ค่า ChangeList จาก index.json: {changelist}")
+
+# หากต้องการทดสอบ resource.json
+# changelist = get_changelist_from_json(resource_json_url)
+# if changelist:
+#     print(f"ค่า ChangeList จาก resource.json: {changelist}")
+
 ```
-หรือใช้คำสั่ง git log --oneline เพื่อแสดงรายการ commit สั้นๆ:
+ผลลัพธ์ที่คาดว่าจะได้:
 ```
-git log --oneline
+# Output ที่คาดว่าจะได้:
+ค่า ChangeList จาก index.json: 2585778
+
 ```
-จะได้ผลลัพธ์คล้ายกับ:
-```
-34f9ac3 Update game mechanics
-3cc0321 Fix bug in character animation
-9a7c123 Add new levels
-```
-จากนี้คุณสามารถใช้ commit ID เช่น 34f9ac3 หรือใช้ หมายเลขเวอร์ชันที่กำหนด ที่บ่งบอกการเปลี่ยนแปลงในแต่ละเวอร์ชันของเกม
-# 2. การใช้ระบบ CI/CD (Continuous Integration/Continuous Deployment)
-
- - หากทีมพัฒนาของคุณใช้ระบบ CI/CD อย่าง Jenkins, GitLab CI, หรือ GitHub Actions, ในหลายกรณี หมายเลข ChangeList จะถูกสร้างขึ้นโดยอัตโนมัติในกระบวนการ build และ deploy ในแต่ละรอบการอัปเดต
- - หมายเลขนี้อาจจะมาจาก หมายเลข build หรือ หมายเลขเวอร์ชัน ที่ระบุว่าเป็นการอัปเดตชุดไหนจากการทำงานในรอบนั้นๆ
-# ตัวอย่างการหาหมายเลข ChangeList ใน CI/CD:
-
- - หากใช้ Jenkins, หมายเลข Build ID หรือ Build Number จะสามารถใช้เป็นหมายเลข ChangeList ได้
- - ใน GitLab CI, คุณอาจจะดูจากหมายเลข Pipeline ID หรือ Commit SHA ที่ระบุถึงการเปลี่ยนแปลงในรอบการ build หรือ deployment
- - สำหรับ GitHub Actions, การตั้งค่า GITHUB_SHA หรือหมายเลข commit hash ก็สามารถใช้เป็น ChangeList
-# 3. การใช้ระบบการจัดการโปรเจ็กต์ (เช่น Jira, Trello, Asana)
-
- - หากทีมพัฒนาของคุณใช้ระบบการจัดการโปรเจ็กต์เพื่อบันทึก issue หรือ task ในกระบวนการพัฒนา, หมายเลข ChangeList อาจจะมาจาก หมายเลข issue หรือ หมายเลข task ที่เกี่ยวข้องกับการอัปเดตหรือฟีเจอร์ที่ได้รับการพัฒนา
- - บางครั้ง ChangeList อาจจะถูกตั้งขึ้นจาก หมายเลขเวอร์ชันของการปล่อย หรือ หมายเลข release ที่ทีมพัฒนาทำการออกใหม่
-# 4. การค้นหาจากข้อมูลการปล่อย (Release Notes)
-
- - ถ้าคุณไม่มีการเข้าถึงระบบที่ใช้ในการพัฒนา, คุณสามารถหาหมายเลข ChangeList จาก Release Notes หรือ Changelog ที่ทีมพัฒนาอาจจะปล่อยออกมา
- - Release Notes จะมักจะระบุรายละเอียดของการเปลี่ยนแปลงทั้งหมดในแต่ละเวอร์ชัน รวมถึงการเพิ่มฟีเจอร์ใหม่ๆ หรือการแก้ไขบั๊ก
- - บางครั้ง Release Notes จะระบุหมายเลข ChangeList หรือหมายเลข commit ID ของการอัปเดตนั้นๆ
-
-# สรุปการหา ChangeList
-การหาหมายเลข ChangeList จะต้อง:
-
- - ตรวจสอบในระบบควบคุมเวอร์ชัน (Git, SVN) หากคุณมีการเข้าถึงโค้ด
- - ตรวจสอบในระบบ CI/CD ถ้าใช้เครื่องมืออัตโนมัติในการ build และ deploy
- - ดูจาก Release Notes หรือ Changelog ถ้าไม่มีการเข้าถึงระบบควบคุมเวอร์ชัน
-ถ้าคุณเป็นผู้พัฒนาหรือเจ้าของโปรเจ็กต์, คุณจะต้องตั้งระบบให้มีการ บันทึกหมายเลขการเปลี่ยนแปลง อย่างชัดเจนเพื่อติดตามและระบุการอัปเดตในแต่ละครั้ง.
-![383497428-dcee038b-cb5a-4263-b542-1ef01ff8c68e](https://github.com/user-attachments/assets/098148ab-17a5-4373-8021-3052bfef67c1)
-
+# สรุป:
+ผลลัพธ์ที่ได้จากการรันสคริปต์ Python ข้างต้นคือ ค่า ChangeList ที่อยู่ในไฟล์ index.json หรือ resource.json ที่เราใช้ดึงข้อมูล
+จากตัวอย่างนี้, ค่าของ ChangeList คือ 2585778 ซึ่งแสดงถึงเวอร์ชันของเกมหรือการอัปเดตล่าสุดที่คุณจะต้องใช้ในการอัปเดต config.json หรือระบบอื่น ๆ
 
 
