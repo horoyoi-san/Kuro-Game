@@ -1,3 +1,7 @@
+# SHA-1 checksum of files for Wuthering Waves (beta) game will be applied to the Wuthering Waves project.
+https://github.com/horoyoi-san/Kuro-Game/blob/Wutheing-waves-1.4-BETA/assets/hotpatch/prod/Windows/config.json
+
+
 การตรวจสอบค่า SHA-1 ของไฟล์สำหรับเกม Wuthering Waves (Beta) หรือไฟล์ใด ๆ บน Windows โดยใช้คำสั่ง CertUtil ทำตามขั้นตอนดังนี้:
 1. เปิด Command Prompt:
  - กดปุ่ม Windows + R บนคีย์บอร์ด จากนั้นพิมพ์ cmd แล้วกด Enter
@@ -6,7 +10,7 @@
 ```
 CertUtil -hashfile "CertUtil -hashfile "C:\Wuthering Waves(Beta)\Wuthering Waves Game\Wuthering Waves.exe" SHA1" SHA1
 ```
-แทนที่ ```"C:\path\to\your\file"``` ด้วยที่อยู่ของไฟล์ที่ต้องการตรวจสอบ SHA-1
+แทนที่ ```C:\Wuthering Waves(Beta)\Wuthering Waves Game\Wuthering Waves.exe``` ด้วยที่อยู่ของไฟล์ที่ต้องการตรวจสอบ SHA-1
 3. ระบบจะแสดงค่า SHA-1 ของไฟล์ในรูปแบบของชุดตัวอักษรและตัวเลขยาว ๆ ซึ่งสามารถใช้ตรวจสอบว่าไฟล์ดังกล่าวตรงกับค่าใน JSON หรือไม่
 ![image](https://github.com/user-attachments/assets/43d446da-15b5-4ac5-b7f1-b5c65a9076c3)
 
