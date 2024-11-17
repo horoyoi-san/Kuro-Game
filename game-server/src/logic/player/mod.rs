@@ -129,9 +129,86 @@ impl Player {
     // Should be handled by quest progression,
     // but as of right now, just unlock what we need
     fn ensure_basic_unlock_func(&mut self) {
-        self.func.unlock(10026);           // ปลดล็อก explore tools แบบเต็ม
-        self.func.unlock_icon_only(10009);  // ปลดล็อกให้แสดงเฉพาะไอคอนสำหรับ 10009
+        // หมวดหมู่: เครื่องมือสำหรับการสำรวจ
+        self.func.unlock(10001); // เครื่องสะท้อนเสียง - Sound Reflection Machine
+        self.func.unlock(10026); // เครื่องมือสำรวจ - Explore Tools
+        self.func.unlock(10027); // ฐานส่งต่อ - Relay Base
+        self.func.unlock(10026001); // การรับรู้สนามเสียง - Sound Field Recognition
+        self.func.unlock(10026002); // ตะขอขับช่วงล่าง - Lower Range Hook Drive
+        self.func.unlock(10026003); // ไดรเวอร์ช่วงล่าง - Lower Range Driver
+        self.func.unlock(10026006); // การสร้างภาพเสียง - Sound Imaging
+    
+        // หมวดหมู่: การปรับแต่งผู้เล่น
+        self.func.unlock(10002); // กระเป๋าเป้สะพายหลัง - Backpack
+        self.func.unlock(10009); // การปรับแต่ง - Customization
+        self.func.unlock(10052); // การแปลงลำดับเสียง - Sound Sequence Conversion
+    
+        // หมวดหมู่: ระบบสังคม
+        self.func.unlock(10010); // การแลกเปลี่ยนสหภาพ - Union Exchange
+        self.func.unlock(10011); // เพื่อน - Friends
+        self.func.unlock(10012); // กิลด์ - Guild
+        self.func.unlock(10072); // การเชื่อมโยงอีเมล - Email Linking
+        self.func.unlock(10070); // พันธมิตรเทศกาลไล่ดวงจันทร์ - Moon Chase Festival Alliance
+    
+        // หมวดหมู่: ระบบการต่อสู้และทักษะ
+        self.func.unlock(10040); // คำสั่งการต่อสู้ BP - BP Battle Orders
+        self.func.unlock(10046); // อาร์เรย์โฟกัส - Focus Array
+        self.func.unlock(10047); // กระแสเสียงที่วุ่นวาย - Noisy Soundwaves
+    
+        // หมวดหมู่: กิจกรรมและอีเวนต์พิเศษ
+        self.func.unlock(10006); // กิจกรรมในเวลา จำกัด - Limited-Time Events
+        self.func.unlock(10067); // ตัวแทนเทศกาลไล่ดวงจันทร์ - Moon Chase Festival Representative
+        self.func.unlock(10068); // การก่อสร้างเทศกาลไล่ดวงจันทร์ - Moon Chase Festival Construction
+        self.func.unlock(10069); // กระดานเรื่องราวเทศกาลไล่ดวงจันทร์ - Moon Chase Festival Storyboard
+        self.func.unlock(10070); // พันธมิตรเทศกาลไล่ดวงจันทร์ - Moon Chase Festival Alliance
+    
+        // หมวดหมู่: อื่นๆ
+        self.func.unlock(10003); // เทอร์มินัล Mingyu - Mingyu Terminal
+        self.func.unlock(10004); // งาน - Jobs
+        self.func.unlock(10005); // การเล่นเกมแบบ Resident - Resident Game Mode
+        self.func.unlock(10013); // ความสำเร็จ - Achievements
+        self.func.unlock(10014); // หนังสือภาพ - Picture Book
+        self.func.unlock(10015); // แผนที่ - Map
+        self.func.unlock(10016); // สำนักงานจัดหางาน Resonator - Resonator Job Board
+        self.func.unlock(10017); // ความแข็งแกร่งทางกายภาพ - Physical Strength
+        self.func.unlock(10018); // เวลา - Time
+        self.func.unlock(10019); // การตั้งค่าระบบ - System Settings
+        self.func.unlock(10020); // อีเมล - Email
+        self.func.unlock(10021); // ออนไลน์ - Online Mode
+        self.func.unlock(10022); // บทช่วยสอน - Tutorial
+        self.func.unlock(10023); // รับและบันทึกเสียง - Audio Recording
+        self.func.unlock(10024); // การมอบหมายการประชุมล่วงหน้า - Pre-assigned Meetings
+        self.func.unlock(10025); // เดี่ยวแปลก ๆ - Strange Solo
+        self.func.unlock(10028); // ความคิดเห็นของผู้ใช้ - User Feedback
+        self.func.unlock(10029); // พลัง - Power
+        self.func.unlock(10030); // สถานีวิจัยวิทยาศาสตร์กำเนิด - Genesis Science Research Station
+        self.func.unlock(10031); // ล็อคทักษะ - Skill Lock
+        self.func.unlock(10032); // พื้นที่เงียบ - Quiet Zone
+        self.func.unlock(10033); // ระบบทำอาหาร - Cooking System
+        self.func.unlock(10034); // การพิมพ์แบบรวม - Collective Printing
+        self.func.unlock(10035); // ระบบสังเคราะห์ - Synthesis System
+        self.func.unlock(10036); // คอนแชร์โต - Concerto
+        self.func.unlock(10037); // การเปลี่ยนเพศ - Gender Change
+    
+        // หมวดหมู่: อุปกรณ์การฝึกอบรม
+        self.func.unlock(10042); // การแลกเปลี่ยนพูลมังกร - Dragon Pool Exchange
+        self.func.unlock(10043); // อุปกรณ์การฝึกอบรม - Training Equipment
+    
+        // หมวดหมู่: ฟังก์ชันพิเศษ
+        self.func.unlock(10055); // หอปีนเขาใหม่ - New Climbing Tower
+        self.func.unlock(10056); // วงล้อฟังก์ชัน - Function Wheel
+        self.func.unlock(10057); // รางวัลการสำรวจ - Exploration Rewards
+        self.func.unlock(10058); // บล็อกไลบรารี - Library Block
+        self.func.unlock(10059); // อาณาจักรแห่งเสียง - Sound Kingdom
+        self.func.unlock(10060); // ระบบส่วนบุคคล - Personal System
+        self.func.unlock(10061); // ประทับตรา Jijing - Jijing Stamp
+        self.func.unlock(10062); // โจวเบน - เต่า - Zhou Ben - Turtle
+        self.func.unlock(10063); // โจวเบน - สการ์ - Zhou Ben - Scar
+        self.func.unlock(10064); // Zhou Ben - รูปแบบที่แท้จริงของสิ่งที่ไม่มีมงกุฎ - Zhou Ben - True Form of the Crownless
+        self.func.unlock(10065); // ? - Unknown
+        self.func.unlock(10066); // พื้นที่เก็บข้อมูลความแข็งแกร่ง - Strength Storage Area
     }
+    
 
     fn ensure_current_formation(&mut self) {
         // If the list off formation is empty, add a default formation
