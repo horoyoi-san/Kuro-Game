@@ -101,7 +101,7 @@ def download_file(url, dest, size, chunk_size=1048576, max_retries=3, timeout=30
 
 def main():
     print("Welcome to the Resource Downloader!")
-    output_folder = input("Enter the folder path to download files to: ").strip()
+    output_folder = input("Enter the folder path to download the file. Enter the desired folder name.: ").strip()
     if not output_folder:
         print("Error: Output folder cannot be empty.")
         return
@@ -111,7 +111,7 @@ def main():
     filters = input("Enter file filters (e.g., '.zip,.png'), or press Enter to download all: ").strip()
     filters = [f.strip() for f in filters.split(',')] if filters else None
 
-    max_workers = input("Enter the number of concurrent downloads (default: 100): ").strip()
+    max_workers = input("Enter the number of concurrent downloads (default: 100) (recommended: 10,000): ").strip()
     max_workers = int(max_workers) if max_workers.isdigit() else 100
 
     download_resources(RESOURCE_URL, CDN_BASE_URL, output_folder, filters=filters, max_workers=max_workers)
