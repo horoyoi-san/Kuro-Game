@@ -6,8 +6,8 @@ import time
 # RESOURCE_URL = "https://pcdownload-aliyun.aki-game.com/pcstarter/prod/game/G152/9.9.9/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/resource.json"
 # CDN_BASE_URL = "https://pcdownload-huoshan.aki-game.com/pcstarter/prod/game/G152/9.9.9/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/zip/"
 
-RESOURCE_URL = "https://pcdownload-aliyun.aki-game.com/pcstarter/prod/game/G152/1.4.0/iQPhVvIx0vVjUoykmdLNMSHN0sfNWeij/resource.json"
-CDN_BASE_URL = "https://pcdownload-huoshan.aki-game.com/pcstarter/prod/game/G152/1.4.0/iQPhVvIx0vVjUoykmdLNMSHN0sfNWeij/zip/"
+RESOURCE_URL = "https://pcdownload-aliyun.aki-game.com/pcstarter/prod/game/G152/2.0.0/s3QZbNfFYWyA3MPj4HVocJ5ksc33yeLb/resource.json"
+CDN_BASE_URL = "https://pcdownload-aliyun.aki-game.com/pcstarter/prod/game/G152/2.0.0/s3QZbNfFYWyA3MPj4HVocJ5ksc33yeLb/zip"
 
 def download_resources(resource_url, cdn_base_url, output_folder):
     response = requests.get(resource_url)
