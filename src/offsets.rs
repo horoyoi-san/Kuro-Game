@@ -19,15 +19,15 @@ pub(crate) struct InjectConfiguration {
 
 #[cfg(feature = "cn_beta_2_0_0")]
 pub(crate) const CONFIG: InjectConfiguration = InjectConfiguration {
-    f_pak_file_check: 0x3E37D90, // หาค่า
-    f_pak_file_check_preamble: 0x8148574157565340, // หาค่า
+    f_pak_file_check: 0x403AD00, // หาค่า
+    f_pak_file_check_preamble: 0x8D48574157565540, // หาค่า
     #[cfg(all(not(feature = "only-sig-bypass"), feature = "regular"))]
     kuro_http_get: 0xFE9E00, // หาค่า
     #[cfg(all(not(feature = "enable-sdk"), not(feature = "only-sig-bypass"), feature = "regular"))]
     disable_sdk: DisableSdkConfiguration{
         sdk_dll: s!("KRSDKEx.dll"),
-        eula_accept: 0x4A6D0, // หาค่า
-        sdk_go_away: 0x8BB40, // หาค่า
+        eula_accept: 0x4E580, // หาค่า
+        sdk_go_away: 0x90B90, // หาค่า
     }
 };
 
