@@ -14,8 +14,8 @@ const FPAKFILE_CHECK: usize = 0x403AD00;
 
 unsafe fn thread_func() {
     Console::AllocConsole().unwrap();
-    println!("ข้ามการตรวจสอบลายเซ็นของ Wuthering Waves");
-    println!("อย่าลืมสร้าง PS ด้วย5555");
+    println!("Skip Wuthering Waves signature check");
+    println!("Don't forget to create PS5555");
 
     let module = GetModuleHandleA(PCSTR::null()).unwrap();
     println!("Base: {:X}", module.0 as usize);
