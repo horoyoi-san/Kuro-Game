@@ -6,8 +6,8 @@ import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
-RESOURCE_URL = "https://hw-pcdownload-qcloud.aki-game.net/pcstarter/prod/game/G153/2.0.0/bnZiZfNC4CqLh1hprSOLYBfUkhR8XDdu/resource.json"
-CDN_BASE_URL = "https://hw-pcdownload-qcloud.aki-game.net/pcstarter/prod/game/G153/2.0.0/bnZiZfNC4CqLh1hprSOLYBfUkhR8XDdu/zip/"
+RESOURCE_URL = ""
+CDN_BASE_URL = ""
 
 # Configure logging
 log_filename = "download_log.txt"
