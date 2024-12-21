@@ -22,7 +22,7 @@ pub(crate) const CONFIG: InjectConfiguration = InjectConfiguration {
     f_pak_file_check: 0x403AD00, // หาค่า
     f_pak_file_check_preamble: 0x8D48574157565540, // หาค่า
     #[cfg(all(not(feature = "only-sig-bypass"), feature = "regular"))]
-    kuro_http_get: 0xFE9E00, // หาค่า
+    kuro_http_get: 0x39DB62D, // หาค่า
     #[cfg(all(not(feature = "enable-sdk"), not(feature = "only-sig-bypass"), feature = "regular"))]
     disable_sdk: DisableSdkConfiguration{
         sdk_dll: s!("KRSDKEx.dll"),
