@@ -1,2 +1,0 @@
-frida-gadget.dll
-carlotta.dll
