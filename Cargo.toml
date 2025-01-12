@@ -1,10 +1,10 @@
 [package]
-name = "Carlotta-patch"
+name = "PS-patch"
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "Carlotta"
+name = "PS"
 crate-type = ["cdylib"]
 
 [dependencies]
